@@ -173,11 +173,6 @@ LangSmith provides:
 
 ---
 
-### 📸 LangSmith Trace Screenshots (Placeholders)
-
-> The following screenshots illustrate LangSmith traces captured during execution.
-> These will be replaced with actual screenshots during final submission.
-
 #### 1️⃣ LangGraph Execution Trace
 
 Shows the agent’s decision-making and routing logic.
