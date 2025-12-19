@@ -1,0 +1,15 @@
+streamlit
+langchain
+langchain-community
+langgraph
+langsmith
+qdrant-client
+pypdf
+python-dotenv
+requests
+pytest
+langchain-google-genai 
+google-generativeai
+langchain-text-splitters
+langchain-qdrant 
+qdrant-client
