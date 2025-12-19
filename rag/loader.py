@@ -13,8 +13,8 @@ def load_and_split_pdf(pdf_path: str):
     documents = loader.load()
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=600,
-        chunk_overlap=70,
+        chunk_size=1200,
+        chunk_overlap=250,
         separators=["\n\n", "\n", ".", "!", " ", ""],
     )
 

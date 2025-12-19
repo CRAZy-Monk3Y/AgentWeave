@@ -20,8 +20,6 @@ This project showcases hands-on experience with:
 - Clean architecture and modular Python code
 - Interactive UI with **Streamlit**
 
-This is a **portfolio-grade GenAI project**, not a toy demo.
-
 ---
 
 ## 🚀 Key Features
