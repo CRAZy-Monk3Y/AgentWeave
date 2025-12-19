@@ -37,23 +37,15 @@ for message in st.session_state.messages:
 prompt = st.chat_input("Ask me something...")
 
 if prompt:
-    st.session_state.messages.append({
-        "role": "user",
-        "content": prompt
-    })
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.chat_message("user"):
         st.markdown(prompt)
 
     with st.spinner("🤔 Thinking..."):
-        result = graph.invoke({
-            "question": prompt
-        })
+        result = graph.invoke({"question": prompt})
 
-    assistant_message = {
-        "role": "assistant",
-        "content": result["answer"]
-    }
+    assistant_message = {"role": "assistant", "content": result["answer"]}
 
     if "chunks" in result:
         assistant_message["chunks"] = result["chunks"]

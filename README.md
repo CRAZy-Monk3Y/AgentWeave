@@ -152,6 +152,63 @@ What is the Pequod?
 Why does Captain Ahab hate the white whale?
 ```
 
+### 📈 LangSmith Tracing & Evaluation
+
+AgentWeave uses **LangSmith** to trace, debug, and evaluate the end-to-end agentic workflow, including routing decisions, tool usage, retrieval steps, and LLM responses.
+
+LangSmith provides:
+
+* Full visibility into **LangGraph execution**
+* Inspection of **RAG retrieval context**
+* Evaluation of **LLM inputs and outputs**
+* Easier debugging and observability for agentic systems
+
+#### 🔍 Tracked Components
+
+* LangGraph routing decisions (Weather vs RAG)
+* OpenWeather API tool invocation
+* Qdrant vector retrieval
+* Gemini LLM prompts and responses
+* Safety guardrail enforcement
+
+---
+
+### 📸 LangSmith Trace Screenshots (Placeholders)
+
+> The following screenshots illustrate LangSmith traces captured during execution.
+> These will be replaced with actual screenshots during final submission.
+
+#### 1️⃣ LangGraph Execution Trace
+
+Shows the agent’s decision-making and routing logic.
+
+![LangGraph Trace](screenshots/agent_graph.jpg)
+
+---
+
+#### 2️⃣ RAG Retrieval & Vector Search Trace
+
+Shows Qdrant vector retrieval and retrieved document chunks.
+
+![RAG Retrieval Trace](screenshots/langsmith-rag-question-ss.png)
+
+---
+
+#### 3️⃣ Weather Agent
+
+![LLM Evaluation Trace](screenshots/langsmith-weather-agent-ss.png)
+
+---
+
+### ✅ Why LangSmith Was Used
+
+LangSmith enables:
+
+* Observability for agentic workflows
+* Evaluation of LLM behavior
+* Verification of RAG grounding
+* Debugging of multi-step reasoning pipelines
+
 ---
 
 ## ⚙️ Setup Instructions (Windows)
