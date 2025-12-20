@@ -1,0 +1,9 @@
+[client]
+showErrorDetails = "none"
+
+[logger]
+level = "info"
+
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = false
