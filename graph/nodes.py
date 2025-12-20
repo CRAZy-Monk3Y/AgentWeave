@@ -1,5 +1,6 @@
 from datetime import datetime
-from rag.qa import rag_answer
+import streamlit as st
+from rag.vectorstore import load_vectorstore
 from tools.weather import fetch_weather, extract_city
 from llm.model import get_llm
 
@@ -33,13 +34,42 @@ def weather_node(state):
 
     STRICTLY GIVE the outcome only don't explain or provide any justification.
     """
-    
+
     response = llm.invoke(prompt)
 
     return {"answer": response.content}
 
 
 def rag_node(state):
-    answer, sources, chunks = rag_answer(state["question"])
+    kb_id = st.session_state.get("current_kb")
 
-    return {"answer": answer, "sources": list(set(sources)), "chunks": chunks}
+    if not kb_id:
+        return {"answer": "Please upload or select a knowledge base first."}
+
+    vectorstore = load_vectorstore(kb_id)
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+
+    docs = retriever.invoke(state["question"])
+    context = "\n\n".join(d.page_content for d in docs)
+
+    prompt = f"""
+Answer the question using only the context below.
+
+Context:
+{context}
+
+Question:
+{state["question"]}
+"""
+
+    try:
+        response = llm.invoke(prompt)
+        answer = response.content
+    except Exception:
+        answer = "I can’t help with that request due to safety guidelines."
+
+    return {
+        "answer": answer,
+        "chunks": [d.page_content for d in docs],
+        "sources": list({d.metadata.get("source") for d in docs}),
+    }

@@ -1,13 +1,11 @@
-from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-load_dotenv() 
-
-
-def get_llm():
+def get_llm(streaming: bool = False):
     return ChatGoogleGenerativeAI(
         model="gemini-2.5-flash-lite",
         temperature=0.3,
+        streaming=streaming,
+
         safety_settings={
             "HARM_CATEGORY_HARASSMENT": "BLOCK_MEDIUM_AND_ABOVE",
             "HARM_CATEGORY_HATE_SPEECH": "BLOCK_MEDIUM_AND_ABOVE",
@@ -15,6 +13,7 @@ def get_llm():
             "HARM_CATEGORY_DANGEROUS_CONTENT": "BLOCK_MEDIUM_AND_ABOVE",
         }
     )
+
 
 # if __name__ == "__main__":
 #     llm = get_llm()
