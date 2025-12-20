@@ -1,60 +1,63 @@
 # 🧵 AgentWeave — Agentic AI with Tool Use & RAG
 
-**AgentWeave** is a production-style **Agentic AI application** that intelligently routes user queries between **real-time tools** and a **Retrieval-Augmented Generation (RAG)** pipeline.  
-It is built using **LangGraph**, **LangChain**, **Google Gemini**, and **Qdrant**, and demonstrates explainable, modular, and scalable GenAI system design.
+**AgentWeave** is a production-style **Agentic AI application** that intelligently routes user queries between **real-time tools** and **Retrieval-Augmented Generation (RAG)** pipelines.
 
-> Weaving tools, knowledge, and reasoning into a single intelligent agent.
+Built using **LangGraph**, **LangChain**, **Google Gemini**, **Qdrant**, and **Streamlit**, the project demonstrates clean, explainable, and scalable **GenAI system design** with strong emphasis on agent orchestration, vector search, and LLM evaluation.
 
 ---
 
 ## 🔍 What This Project Demonstrates
 
-This project showcases hands-on experience with:
-
-- Agentic AI systems using **LangGraph**
-- **Tool-aware LLM reasoning** (API + knowledge routing)
+- Agentic workflows using **LangGraph**
+- Tool-aware LLM reasoning (API vs knowledge routing)
 - **Retrieval-Augmented Generation (RAG)**
-- **Vector databases (Qdrant)**
-- **LLM embeddings & semantic search**
-- **Explainable AI (showing retrieved context)**
-- Clean architecture and modular Python code
-- Interactive UI with **Streamlit**
+- Vector databases and semantic search using **Qdrant**
+- Embeddings with **Gemini `text-embedding-004`**
+- Explainable AI via retrieved context visibility
+- Persistent and isolated knowledge base management
+- Modular, production-ready Python architecture
+- Interactive chat UI with **Streamlit**
 
 ---
 
-## 🚀 Key Features
+## 🚀 Key Capabilities
 
-### 🤖 Agentic Orchestration (LangGraph)
-- Conditional routing between multiple capabilities
-- Deterministic decision-making using graph-based workflows
-- Easily extensible with new tools or agents
+### 🤖 Agent Orchestration
+
+- Deterministic routing using graph-based workflows
+- Clear separation between tool execution and RAG logic
+- Easily extensible agent design
 
 ### 🌦️ Real-Time Tool Integration
+
 - Live weather data via **OpenWeather API**
-- Structured API responses summarized using **Gemini LLM**
+- Structured responses summarized using **Google Gemini**
 
 ### 📚 Retrieval-Augmented Generation (RAG)
+
 - PDF ingestion and chunking using `RecursiveCharacterTextSplitter`
-- Semantic embeddings via **Gemini `text-embedding-004`**
-- Vector search powered by **Qdrant**
+- Semantic vector search using **Qdrant**
 - Top-K retrieval for grounded LLM responses
+- Strict query isolation per knowledge base
 
-### 🔎 Explainability & Transparency
-- Displays retrieved document chunks in the UI
-- Shows source documents used to generate answers
-- Reduces hallucinations by enforcing context grounding
+### 🔎 Explainability
 
-### 🖥️ Interactive Streamlit UI
-- Chat-based interface
+- Retrieved document chunks displayed in the UI
+- Source transparency for every RAG-based answer
+- Reduced hallucinations through enforced context grounding
+
+### 🖥️ Streamlit UI
+
+- Chat-style interface with conversation history
+- Streaming LLM responses
 - Expandable panels for retrieved chunks and sources
-- Clean UX suitable for demos and interviews
+- Knowledge base selection and lifecycle management
 
 ---
 
 ## 🧠 Architecture Overview
 
 ```
-
 User Query
 ↓
 Streamlit UI
@@ -66,79 +69,73 @@ Routing Logic
 └── RAG Path → Qdrant Vector Search → Gemini Answer
 ↓
 Answer + Retrieved Chunks + Sources
-
-````
+```
 
 ---
 
-## 🛠️ Tech Stack & Skills
+## 🛠️ Tech Stack
 
 **Languages**
+
 - Python
 
-**LLMs & GenAI**
-- Google Gemini (LLM)
+**GenAI & LLMs**
+
+- Google Gemini
 - Gemini `text-embedding-004`
 - Prompt engineering
-- Hallucination mitigation via RAG
+- RAG-based hallucination mitigation
 
 **Frameworks**
-- LangGraph (agent orchestration)
-- LangChain (RAG, embeddings, retrievers)
+
+- LangGraph
+- LangChain
 
 **Databases**
+
 - Qdrant (vector database)
 
 **UI**
+
 - Streamlit
 
-**DevOps / Tooling**
-- Docker (Qdrant)
+**Tooling**
+
+- Docker
 - REST APIs
 - Environment-based configuration
-- Modular, testable codebase
 
 ---
 
 ## 📄 Demo Knowledge Base
 
-For demo purposes, AgentWeave uses an excerpt from **_Moby-Dick_** (public-domain literature) as the knowledge base.
-
-Why this choice:
-- No licensing or IP concerns
-- Rich semantic content for RAG
-- Clear, intuitive demo questions
-
-> The same pipeline can be applied to **enterprise documents** such as policies, architecture docs, manuals, or reports without code changes.
+The demo uses **_Moby-Dick_** (public-domain literature) to showcase RAG behavior.
+The same pipeline works without modification for enterprise documents such as manuals, policies, or internal knowledge bases.
 
 ---
 
-## ✂️ Chunking Strategy (RAG Best Practice)
+## ✂️ Chunking Strategy
 
 ```python
 RecursiveCharacterTextSplitter(
     chunk_size=1200,
     chunk_overlap=250,
 )
-````
+```
 
-This improves:
-
-* Semantic coherence
-* Retrieval accuracy
-* LLM answer quality
+Optimized for semantic coherence and retrieval quality.
 
 ---
 
 ## 🧪 Example Queries
 
-### Tool-Based Query
+**Tool-based**
 
 ```
-What is the weather in Delhi?
+What is the weather in Delhi today?
 ```
 
-### RAG-Based Queries
+**RAG-based**
 
 ```
 Who is Ishmael?
@@ -152,92 +149,61 @@ What is the Pequod?
 Why does Captain Ahab hate the white whale?
 ```
 
-### 📈 LangSmith Tracing & Evaluation
+---
 
-AgentWeave uses **LangSmith** to trace, debug, and evaluate the end-to-end agentic workflow, including routing decisions, tool usage, retrieval steps, and LLM responses.
+## 📈 LangSmith Tracing & Evaluation
 
-LangSmith provides:
+AgentWeave integrates **LangSmith** for observability across the agentic workflow, including routing decisions, tool calls, retrieval steps, and LLM responses.
 
-* Full visibility into **LangGraph execution**
-* Inspection of **RAG retrieval context**
-* Evaluation of **LLM inputs and outputs**
-* Easier debugging and observability for agentic systems
+### 🔍 Tracked Components
 
-#### 🔍 Tracked Components
-
-* LangGraph routing decisions (Weather vs RAG)
-* OpenWeather API tool invocation
-* Qdrant vector retrieval
-* Gemini LLM prompts and responses
-* Safety guardrail enforcement
+- LangGraph execution flow
+- OpenWeather API usage
+- Qdrant retrieval context
+- Gemini prompt–response cycles
+- Safety and guardrail behavior
 
 ---
 
-#### 1️⃣ LangGraph Execution Trace
-
-Shows the agent’s decision-making and routing logic.
+### 1️⃣ LangGraph Execution Trace
 
 ![LangGraph Trace](screenshots/agent_graph.jpg)
 
 ---
 
-#### 2️⃣ RAG Retrieval & Vector Search Trace
-
-Shows Qdrant vector retrieval and retrieved document chunks.
+### 2️⃣ RAG Retrieval & Vector Search Trace
 
 ![RAG Retrieval Trace](screenshots/langsmith-rag-question-ss.png)
 
 ---
 
-#### 3️⃣ Weather Agent
+### 3️⃣ Weather Agent Trace
 
-![LLM Evaluation Trace](screenshots/langsmith-weather-agent-ss.png)
-
----
-
-### ✅ Why LangSmith Was Used
-
-LangSmith enables:
-
-* Observability for agentic workflows
-* Evaluation of LLM behavior
-* Verification of RAG grounding
-* Debugging of multi-step reasoning pipelines
+![Weather Agent Trace](screenshots/langsmith-weather-agent-ss.png)
 
 ---
 
-## ⚙️ Setup Instructions (Windows)
-
-### 1️⃣ Clone Repository
+## ⚙️ Setup (Windows)
 
 ```bash
 git clone https://github.com/your-username/AgentWeave.git
 cd AgentWeave
 ```
 
-### 2️⃣ Create Virtual Environment
-
 ```powershell
 python -m venv .venv
 .venv\Scripts\activate
-```
-
-### 3️⃣ Install Dependencies
-
-```powershell
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Environment Variables
-
-Create a `.env` file:
+Create `.env`:
 
 ```env
 GOOGLE_API_KEY=your_gemini_api_key
 OPENWEATHER_API_KEY=your_openweather_api_key
 ```
 
-### 5️⃣ Run Qdrant (Docker)
+Run Qdrant:
 
 ```bash
 docker run -d ^
@@ -246,77 +212,11 @@ docker run -d ^
   qdrant/qdrant
 ```
 
-### 6️⃣ Ingest the PDF
-
-```powershell
-python ingest.py
-```
-
-### 7️⃣ Run the App
+Run the app:
 
 ```powershell
 streamlit run app.py
 ```
-
----
-
-## 🧪 Testing
-
-Includes basic tests for:
-
-* Agent routing logic
-* RAG execution
-* Tool invocation
-
-```powershell
-pytest
-```
-
----
-
-## 📈 LangSmith (Optional)
-
-AgentWeave can be instrumented with **LangSmith** to:
-
-* Trace agent decisions
-* Evaluate LLM outputs
-* Debug retrieval quality
-
-Useful for:
-
-* LLM observability
-* Model evaluation
-* Demo screenshots
-
----
-
-## 🧩 Extensibility
-
-AgentWeave is designed to scale:
-
-* Add more tools (databases, ticketing systems, APIs)
-* Introduce reranking or MMR retrieval
-* Extend to multi-agent workflows
-* Replace Streamlit with a production frontend
-
----
-
-## 🎯 Why This Project Matters
-
-AgentWeave demonstrates **real-world GenAI engineering**, including:
-
-* Agentic design patterns
-* Tool orchestration
-* Explainable RAG
-* Production-ready architecture
-
-This project is suitable for:
-
-* AI Engineer roles
-* GenAI / LLM Engineer roles
-* Full-Stack AI roles
-
----
 
 ## 📜 License
 
