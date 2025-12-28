@@ -13,3 +13,4 @@ google-generativeai
 langchain-text-splitters
 langchain-qdrant 
 qdrant-client
+langfuse

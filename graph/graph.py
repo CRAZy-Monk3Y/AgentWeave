@@ -2,6 +2,10 @@ from langgraph.graph import StateGraph
 from graph.nodes import start_node, weather_node, rag_node
 from graph.router import route_question
 from typing import List, TypedDict
+from langfuse.langchain import CallbackHandler
+
+langfuse_handler = CallbackHandler()
+
 
 class GraphState(TypedDict, total=False):
     question: str
@@ -19,14 +23,9 @@ def build_graph():
 
     # Conditional routing
     graph.add_conditional_edges(
-        "start",
-        route_question,
-        {
-            "weather": "weather",
-            "rag": "rag"
-        }
+        "start", route_question, {"weather": "weather", "rag": "rag"}
     )
 
     graph.set_entry_point("start")
 
-    return graph.compile()
+    return graph.compile().with_config({"callbacks": [langfuse_handler]})
